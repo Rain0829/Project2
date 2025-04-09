@@ -1,4 +1,4 @@
-//import java.util.Arrays;
+// import java.util.Arrays;
 
 public class CustomHashTable {
 
@@ -18,9 +18,14 @@ public class CustomHashTable {
         public Response getValue() {
             return value;
         }
-    }
-    private static final int DEFAULT_CAPACITY = 10;
 
+        @Override
+        public String toString() {
+            return "(" + key + ", " + value + ")";
+        }
+    }
+
+    private static final int DEFAULT_CAPACITY = 100;
     private Entry[] table;
     private int size;
 
@@ -33,17 +38,39 @@ public class CustomHashTable {
         return (key * 7) % table.length;
     }
 
-    public void insert(int key, String value) {
+    public void insert(int key, Response value) {
         if (size >= table.length) {
             System.out.println("Hash table is full, cannot insert more elements.");
             return;
         }
 
-        //TO DO
+        int index = hash(key);
+        while (table[index] != null && table[index].getKey() != key) {
+            index = (index + 1) % table.length;
+        }
+
+        table[index] = new Entry(key, value);
+        size++;
     }
 
-    public String search(int key) {
-        // TO DO
+    public Response search(int key) {
+        int index = hash(key);
+        int originalIndex = index;
+
+        while (table[index] != null) {
+            if (table[index].getKey() == key) {
+                return table[index].getValue();
+            }
+
+            index = (index + 1) % table.length;
+
+            // Stop if we've looped all the way around
+            if (index == originalIndex) {
+                break;
+            }
+        }
+
+        return null;
     }
 
     public void delete(int key) {
@@ -54,6 +81,16 @@ public class CustomHashTable {
         if (table[index] != null && table[index].getKey() == key) {
             table[index] = null; // Mark as deleted
             size--;
+
+            // Rehash following entries to avoid broken chains
+            index = (index + 1) % table.length;
+            while (table[index] != null) {
+                Entry entryToRehash = table[index];
+                table[index] = null;
+                size--;
+                insert(entryToRehash.getKey(), entryToRehash.getValue());
+                index = (index + 1) % table.length;
+            }
         }
     }
 
@@ -61,26 +98,9 @@ public class CustomHashTable {
         for (int i = 0; i < table.length; i++) {
             if (table[i] != null) {
                 System.out.println("Index: " + i + ", Key: " + table[i].getKey() + ", Value: " + table[i].getValue());
-            } else
-            {System.out.println(table[i]);}
+            } else {
+                System.out.println("Index: " + i + ", Empty");
+            }
         }
-    }
-
-
-
-    public static void main(String[] args) {
-        CustomHashTable hashTable = new CustomHashTable();
-        hashTable.insert(5, "a");
-        hashTable.insert(15, "b");
-        hashTable.insert(25, "c");
-        hashTable.insert(35, "d");
-        hashTable.insert(45, "e");
-
-        System.out.println("Value for key 25: " + hashTable.search(25)); // Output: Value3
-
-        hashTable.delete(15);
-        System.out.println("Value for key 15 after deletion: " + hashTable.search(15)); // Output: null
-
-        hashTable.printHashTable();
     }
 }

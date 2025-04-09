@@ -32,7 +32,7 @@ public class Response {
     private int Q30;
     private int Quality;
 
-    public Response(int id, String gender, int age, int residence, int education, int maritalStatus, int incomeSource, int smoker, int year, String q9, int q10, int q11, int q12, int q13, int q14, int q15, String q16, int q17, int q18, int q19, int q21, int q22, String q23, int q24, int q20, int q25, int q26, int q27, int q28, int q29, int q30, int quality) {
+    public Response(int id, String gender, int age, int residence, int education, int maritalStatus, int incomeSource, int smoker, int year, String q9, int q10, int q11, int q12, int q13, int q14, int q15, String q16, int q17, int q18, int q19, int q21, int q22, String q23, int q24, int q20, int q25, int q26, int q27, int q28, int q29, int q30) {
         Id = id;
         Gender = gender;
         Age = age;
@@ -64,7 +64,6 @@ public class Response {
         Q28 = q28;
         Q29 = q29;
         Q30 = q30;
-        Quality = quality;
     }
 
     public int getId() {
@@ -91,8 +90,9 @@ public class Response {
         return MaritalStatus;
     }
 
-    public int getSmoker() {
-        return Smoker;
+    public String getSmoker() {
+        String result = (Smoker == 1) ? "Yes" : "No";
+        return result;
     }
 
     public int getYear() {
