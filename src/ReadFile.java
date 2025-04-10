@@ -11,7 +11,13 @@ public class ReadFile {
         for (String line :Line) {
             String[] fields = line.trim().split("\\s+");
             int id = Integer.parseInt(fields[0]);
-            String gender = fields[1];
+            String gender = switch (fields[1]) {
+                case "1" -> "F";
+                case "2" -> "M";
+                case "3" -> "O";
+                case "4" -> "-";
+                default -> "";
+            };
             int age = Integer.parseInt(fields[2]);
             int residence = Integer.parseInt(fields[3]);
             int education = Integer.parseInt(fields[4]);
@@ -64,8 +70,6 @@ public class ReadFile {
     }
 
     public static void main(String[] args) {
-        List<String> list = readFileToList("responses.txt");
-        System.out.println(list);
         CustomHashTable customHashTable = readResponsesFromFile("responses.txt");
         customHashTable.printHashTable();
     }

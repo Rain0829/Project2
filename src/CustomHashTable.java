@@ -39,8 +39,9 @@ public class CustomHashTable {
     }
 
     public void insert(int key, Response value) {
-        if (size >= table.length) {
-            System.out.println("Hash table is full, cannot insert more elements.");
+        if (size >= table.length / 2
+        ) {
+            rehash();
             return;
         }
 
@@ -103,4 +104,17 @@ public class CustomHashTable {
             }
         }
     }
+
+    public void rehash() {
+        Entry[] oldTable = table;
+        table = new Entry[oldTable.length * 3];
+        size = 0;
+
+        for (Entry entry : oldTable) {
+            if (entry != null) {
+                insert(entry.getKey(), entry.getValue());
+            }
+        }
+    }
+
 }
