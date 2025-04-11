@@ -36,7 +36,6 @@ public class Response {
         Id = id;
         Gender = gender;
         Age = age;
-        System.out.println();
         Residence = residence;
         Education = education;
         MaritalStatus = maritalStatus;
