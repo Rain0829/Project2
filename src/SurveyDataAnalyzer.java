@@ -21,9 +21,7 @@ public class SurveyDataAnalyzer {
                     case "-":
                         countGender4++;
                 }
-
             }
-
         }
         genderDistribution[0] = countGender1;
         genderDistribution[1] = countGender2;
@@ -34,16 +32,43 @@ public class SurveyDataAnalyzer {
         System.out.println(genderDistribution[2]);
         System.out.println(genderDistribution[3]);
 
-
         return genderDistribution;
     }
 
     public static int[] ageGroupDistribution(CustomHashTable customHashTable) {
-        System.out.println("hi");
-    return null;
+        int[] ageGroupDistribution = new int[4];
+        int countAge1 = 0;
+        int countAge2 = 0;
+        int countAge3 = 0;
+        int countAge4 = 0;
+        for (int i = 0; i < 900; i++) {
+            Response response = customHashTable.search(i);
+            if (response != null) {
+                switch (response.getAge()) {
+                    case 1:
+                        countAge1++;
+                        break;
+                    case 2:
+                        countAge2++;
+                        break;
+                    case 3:
+                        countAge3++;
+                        break;
+                    case 4:
+                        countAge4++;
+                }
+            }
+        }
+        ageGroupDistribution[0] = countAge1;
+        ageGroupDistribution[1] = countAge2;
+        ageGroupDistribution[2] = countAge3;
+        ageGroupDistribution[3] = countAge4;
+        return ageGroupDistribution;
+    }
 }
     public static void main(String[] args) {
         CustomHashTable customHashTable = ReadFile.readResponsesFromFile("responses.txt");
         genderDistribution(customHashTable);
+
     }
     }
