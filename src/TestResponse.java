@@ -8,7 +8,6 @@ public class TestResponse {
         System.out.println("Gender: " + response.getGender());
         System.out.println("Age: " + response.getAge());
         System.out.println("Quality: " + response.getQuality());
-        System.out.println("_______");
         response.printResponse();
     }
 }
