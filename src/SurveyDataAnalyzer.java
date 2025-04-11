@@ -168,7 +168,7 @@ public class SurveyDataAnalyzer {
         genderDistribution(customHashTable);
         ageGroupDistribution(customHashTable);
         educationDistribution(customHashTable);
-
-
+        incomeDistribution(customHashTable);
+        smokerDistribution(customHashTable);
     }
 }
