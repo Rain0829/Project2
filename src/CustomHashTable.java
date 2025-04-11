@@ -42,7 +42,6 @@ public class CustomHashTable {
         if (size >= table.length / 2
         ) {
             rehash();
-            return;
         }
 
         int index = hash(key);

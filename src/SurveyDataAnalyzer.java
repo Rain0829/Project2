@@ -20,6 +20,7 @@ public class SurveyDataAnalyzer {
                         break;
                     case "-":
                         countGender4++;
+                        break;
                 }
             }
         }
@@ -65,11 +66,109 @@ public class SurveyDataAnalyzer {
         ageGroupDistribution[3] = countAge4;
         return ageGroupDistribution;
     }
-}
-    public static void main(String[] args) {
-        CustomHashTable customHashTable = ReadFile.readResponsesFromFile("responses.txt");
-        System.out.println(customHashTable.getSize());
-        genderDistribution(customHashTable);
+
+    public static int[] educationDistribution(CustomHashTable customHashTable) {
+        int[] educationDistribution = new int[4];
+        int countEducation1 = 0;
+        int countEducation2 = 0;
+        int countEducation3 = 0;
+        int countEducation4 = 0;
+        for (int i = 0; i < customHashTable.getSize(); i++) {
+            Response response = customHashTable.search(i);
+            if (response != null) {
+                switch (response.getEducation()) {
+                    case 1:
+                        countEducation1++;
+                        break;
+                    case 2:
+                        countEducation2++;
+                        break;
+                    case 3:
+                        countEducation3++;
+                        break;
+                    case 4:
+                        countEducation4++;
+                        break;
+                }
+            }
+        }
+        educationDistribution[0] = countEducation1;
+        educationDistribution[1] = countEducation2;
+        educationDistribution[2] = countEducation3;
+        educationDistribution[3] = countEducation4;
+        System.out.println(educationDistribution[0]);
+        System.out.println(educationDistribution[1]);
+        System.out.println(educationDistribution[2]);
+        System.out.println(educationDistribution[3]);
+        return educationDistribution;
+    }
+
+    public static int[] incomeDistribution(CustomHashTable customHashTable) {
+        int[] incomeDistribution = new int[4];
+        int countIncome1 = 0;
+        int countIncome2 = 0;
+        int countIncome3 = 0;
+        int countIncome4 = 0;
+        for (int i = 0; i < customHashTable.getSize(); i++) {
+            Response response = customHashTable.search(i);
+            if (response != null) {
+                switch (response.getIncomeSource()) {
+                    case 1:
+                        countIncome1++;
+                        break;
+                    case 2:
+                        countIncome2++;
+                        break;
+                    case 3:
+                        countIncome3++;
+                        break;
+                    case 4:
+                        countIncome4++;
+                        break;
+                }
+            }
+        }
+        incomeDistribution[0] = countIncome1;
+        incomeDistribution[1] = countIncome2;
+        incomeDistribution[2] = countIncome3;
+        incomeDistribution[3] = countIncome4;
+        System.out.println(incomeDistribution[0]);
+        System.out.println(incomeDistribution[1]);
+        System.out.println(incomeDistribution[2]);
+        System.out.println(incomeDistribution[3]);
+        return incomeDistribution;
+    }
+
+    public static int[] smokerDistribution(CustomHashTable customHashTable) {
+        int[] smokerDistribution = new int[2];
+        int countSmoker1 = 0;
+        int countSmoker2 = 0;
+        for(int i = 0; i < customHashTable.getSize(); i++) {
+            Response response = customHashTable.search(i);
+            if (response != null) {
+                switch (response.getSmoker()) {
+                    case "Yes":
+                        countSmoker1++;
+                        break;
+                    case "No":
+                        countSmoker2++;
+                        break;
+                }
+            }
+        }
+        smokerDistribution[0] = countSmoker1;
+        smokerDistribution[1] = countSmoker2;
+        System.out.println(smokerDistribution[0]);
+        System.out.println(smokerDistribution[1]);
+        return smokerDistribution;
 
     }
+    public static void main(String[] args) {
+        CustomHashTable customHashTable = ReadFile.readResponsesFromFile("responses.txt");
+        genderDistribution(customHashTable);
+        ageGroupDistribution(customHashTable);
+        educationDistribution(customHashTable);
+
+
     }
+}
