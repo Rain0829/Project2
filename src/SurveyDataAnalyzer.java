@@ -139,11 +139,47 @@ public class SurveyDataAnalyzer {
         return incomeDistribution;
     }
 
+    public static int[] maritalDistribution(CustomHashTable customHashTable) {
+        int[] maritalDistribution = new int[4];
+        int countMarital1 = 0;
+        int countMarital2 = 0;
+        int countMarital3 = 0;
+        int countMarital4 = 0;
+        for (int i = 0; i < customHashTable.getSize(); i++) {
+            Response response = customHashTable.search(i);
+            if (response != null) {
+                switch (response.getIncomeSource()) {
+                    case 1:
+                        countMarital1++;
+                        break;
+                    case 2:
+                        countMarital2++;
+                        break;
+                    case 3:
+                        countMarital3++;
+                        break;
+                    case 4:
+                        countMarital4++;
+                        break;
+                }
+            }
+        }
+        maritalDistribution[0] = countMarital2;
+        maritalDistribution[1] = countMarital2;
+        maritalDistribution[2] = countMarital3;
+        maritalDistribution[3] = countMarital4;
+        System.out.println(maritalDistribution[0]);
+        System.out.println(maritalDistribution[1]);
+        System.out.println(maritalDistribution[2]);
+        System.out.println(maritalDistribution[3]);
+        return maritalDistribution;
+    }
+
     public static int[] smokerDistribution(CustomHashTable customHashTable) {
         int[] smokerDistribution = new int[2];
         int countSmoker1 = 0;
         int countSmoker2 = 0;
-        for(int i = 0; i < customHashTable.getSize(); i++) {
+        for (int i = 0; i < customHashTable.getSize(); i++) {
             Response response = customHashTable.search(i);
             if (response != null) {
                 switch (response.getSmoker()) {
@@ -417,7 +453,6 @@ public class SurveyDataAnalyzer {
     }
 
 
-
     public static double[] lifeQualitySmokerBased(CustomHashTable customHashTable){
         double[] lifeSmokerBased = new double[2];
         int countSmoker1 = 0;
@@ -460,7 +495,7 @@ public class SurveyDataAnalyzer {
         System.out.println("-------------------");
         incomeDistribution(customHashTable);
         System.out.println("-------------------");
-        marginalDistribution(customHashTable);
+        maritalDistribution(customHashTable);
         System.out.println("-------------------");
         smokerDistribution(customHashTable);
         System.out.println("-------------------");
