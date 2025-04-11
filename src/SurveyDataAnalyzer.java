@@ -5,9 +5,9 @@ public class SurveyDataAnalyzer {
         int countGender2 = 0;
         int countGender3 = 0;
         int countGender4 = 0;
-        for(int i = 0; i < 100; i ++) {
+        for (int i = 0; i < 100; i++) {
             Response response = customHashTable.search(i);
-            if(response != null) {
+            if (response != null) {
                 switch (response.getGender()) {
                     case "F":
                         countGender1++;
@@ -38,6 +38,10 @@ public class SurveyDataAnalyzer {
         return genderDistribution;
     }
 
+    public static int[] ageGroupDistribution(CustomHashTable customHashTable) {
+        System.out.println("hi");
+    return null;
+}
     public static void main(String[] args) {
         CustomHashTable customHashTable = ReadFile.readResponsesFromFile("responses.txt");
         genderDistribution(customHashTable);
