@@ -1,6 +1,3 @@
-import java.util.Arrays;
-import java.util.Collections;
-
 public class SurveyDataAnalyzer {
     public static int[] genderDistribution(CustomHashTable customHashTable) {
         int[] genderDistribution = new int[4];
