@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Collections;
+
 public class SurveyDataAnalyzer {
     public static int[] genderDistribution(CustomHashTable customHashTable) {
         int[] genderDistribution = new int[4];
@@ -64,6 +67,10 @@ public class SurveyDataAnalyzer {
         ageGroupDistribution[1] = countAge2;
         ageGroupDistribution[2] = countAge3;
         ageGroupDistribution[3] = countAge4;
+        System.out.println(ageGroupDistribution[0]);
+        System.out.println(ageGroupDistribution[1]);
+        System.out.println(ageGroupDistribution[2]);
+        System.out.println(ageGroupDistribution[3]);
         return ageGroupDistribution;
     }
 
@@ -208,6 +215,7 @@ public class SurveyDataAnalyzer {
                 lifeQualityGeneral += response.getQuality();
             }
         }
+        System.out.println(lifeQualityGeneral/300);
         return lifeQualityGeneral / 300;
     }
 
@@ -479,44 +487,248 @@ public class SurveyDataAnalyzer {
         return lifeSmokerBased;
     }
 
+    public static String[] mostCommonTreatment(CustomHashTable customHashTable) {
+        String[] mostCommonTreatments = {"Surgical", "Chemotherapy", "Radiotherapy", "Immunotherapy", "Molecularly targeted therapy"};
+
+        int[] countTreatments = new int[5];
+
+        for (int i = 0; i < customHashTable.getSize(); i++) {
+            Response response = customHashTable.search(i);
+            if (response != null) {
+                String response9 = response.getQ9();
+                if (response9.contains("Surgical")) {
+                    countTreatments[0]++;
+                }
+                if (response9.contains("Chemotherapy")) {
+                    countTreatments[1]++;
+                }
+                if (response9.contains("Radiotherapy")) {
+                    countTreatments[2]++;
+                }
+                if (response9.contains("Immunotherapy")) {
+                    countTreatments[3]++;
+                }
+                if (response9.contains("Molecularly targeted therapy")) {
+                    countTreatments[4]++;
+                }
+            }
+        }
+        sortByCountDescending(mostCommonTreatments, countTreatments);
+        System.out.println(mostCommonTreatments[0]);
+        System.out.println(mostCommonTreatments[1]);
+        System.out.println(mostCommonTreatments[2]);
+        System.out.println(mostCommonTreatments[3]);
+        System.out.println(mostCommonTreatments[4]);
+        return mostCommonTreatments;
+    }
+
+    public static String [] mostCommonSymptoms(CustomHashTable customHashTable) { //something wrong
+        String[] mostCommonSymptoms = {"Cough", "Hoarseness", "Coughing up blood", "Chest pain", "Weakness", "None of the above"};
+        int[] countTreatments = new int[6];
+        for (int i = 0; i < customHashTable.getSize(); i++) {
+            Response response = customHashTable.search(i);
+            if (response != null) {
+                String response16 = response.getQ9();
+                if (response16.contains("Cough")) countTreatments[0]++;
+                if (response16.contains("Hoarseness")) countTreatments[1]++;
+                if (response16.contains("Coughing up blood")) countTreatments[2]++;
+                if (response16.contains("Chest pain")) countTreatments[3]++;
+                if (response16.contains("Shortness of breath")) countTreatments[4]++;
+                if (response16.contains("Weakness")) countTreatments[5]++;
+//                if (response16.contains("None of the above")) countTreatments[6]++; //delete this? bc says []6
+            }
+        }
+        sortByCountDescending(mostCommonSymptoms, countTreatments);
+        System.out.println(mostCommonSymptoms[0]);
+        System.out.println(mostCommonSymptoms[1]);
+        System.out.println(mostCommonSymptoms[2]);
+        System.out.println(mostCommonSymptoms[3]);
+        System.out.println(mostCommonSymptoms[4]);
+        System.out.println(mostCommonSymptoms[5]);
+        return mostCommonSymptoms;
+    }
+    
+    public static String[] mostCommonLifeAspects(CustomHashTable customHashTable) {
+        String[] mostCommonLifeAspects = {"Physical aspect", "Psychological aspect", "Professional life", "Family life", "Social life", "Does not affect"};
+        int[] countLifeAspects = new int[6];
+        for (int i = 0; i < customHashTable.getSize(); i++) {
+            Response response = customHashTable.search(i);
+            if (response != null) {
+                String response23 = response.getQ23();
+                if (response23.contains("Physical aspect")) countLifeAspects[0]++;
+                if (response23.contains("Psychological aspect")) countLifeAspects[1]++;
+                if (response23.contains("Professional life")) countLifeAspects[2]++;
+                if (response23.contains("Family life")) countLifeAspects[3]++;
+                if (response23.contains("Social life")) countLifeAspects[4]++;
+                if (response23.contains("Does not affect")) countLifeAspects[5]++;
+            }
+        }
+        sortByCountDescending(mostCommonLifeAspects, countLifeAspects);
+        System.out.println(mostCommonLifeAspects[0]);
+        System.out.println(mostCommonLifeAspects[1]);
+        System.out.println(mostCommonLifeAspects[2]);
+        System.out.println(mostCommonLifeAspects[3]);
+        System.out.println(mostCommonLifeAspects[4]);
+        System.out.println(mostCommonLifeAspects[5]);
+        return mostCommonLifeAspects;
+    }
+
+    public static double[] lifeQualityMixConditionBased(CustomHashTable customHashTable) {
+
+        double [] avg = new double[2];
+        int count = 0;
+        double quality = 0;
+
+        for (int i = 0; i < customHashTable.getSize(); i++) {
+            Response response = customHashTable.search(i);
+            if (response != null) {
+                int Residence = response.getResidence();
+                int Marital = response.getMaritalStatus();
+                if (Residence == 4 && Marital == 1) {
+                    count++;
+                    quality += response.getQuality();
+                }
+            }
+        }
+        quality = quality / count;
+        avg[0] = quality;
+
+        count = 0;
+        quality = 0;
+
+        for (int i = 0; i < customHashTable.getSize(); i++) {
+            Response response = customHashTable.search(i);
+            if (response != null) {
+                int Residence = response.getResidence();
+                int Marital = response.getMaritalStatus();
+                if ((Residence == 1 || Residence == 2) && Marital == 2) {
+                    count++;
+                    quality += response.getQuality();
+                }
+            }
+        }
+        quality = quality / count;
+        avg[1] = quality;
+        System.out.println(avg[0]);
+        System.out.println(avg[1]);
+
+        return avg;
+    }
+
+    public static double[] lifeQualityResponseBased(CustomHashTable customHashTable) {
+        double [] avg = new double[4];
+        int countVeryGood = 0;
+        int countGood = 0;
+        int countBad = 0;
+        int countVeryBad = 0;
+        double qualityVeryGood = 0;
+        double qualityGood = 0;
+        double qualityBad = 0;
+        double qualityVeryBad = 0;
+
+        for (int i = 0; i < customHashTable.getSize(); i++) {
+            Response response = customHashTable.search(i);
+            if (response != null) {
+                int Q15 = response.getQ15();
+                if (Q15 == 1){
+                    countVeryGood++;
+                    qualityVeryGood += response.getQuality();
+                }
+                if (Q15 == 2){
+                    countGood++;
+                    qualityGood += response.getQuality();
+                }
+                if (Q15 == 3){
+                    countBad++;
+                    qualityBad += response.getQuality();
+                }
+                if (Q15 == 4){
+                    countVeryBad++;
+                    qualityVeryBad += response.getQuality();
+                }
+            }
+        }
+        qualityVeryGood = qualityVeryGood / countVeryGood;
+        qualityGood = qualityGood / countGood;
+        qualityBad = qualityBad / countBad;
+        qualityVeryBad = qualityVeryBad / countVeryBad;
+        avg[0] = qualityVeryGood;
+        avg[1] = qualityGood;
+        avg[2] = qualityBad;
+        avg[3] = qualityVeryBad;
+        System.out.println(avg[0]);
+        System.out.println(avg[1]);
+        System.out.println(avg[2]);
+        System.out.println(avg[3]);
+        return avg;
+    }
+
+        public static void main (String[]args){
+            CustomHashTable customHashTable = ReadFile.readResponsesFromFile("responses.txt");
+            genderDistribution(customHashTable);
+            System.out.println("------------------");
+            ageGroupDistribution(customHashTable);
+            System.out.println("------------------");
+            lifeQualityResidenceBased(customHashTable);
+            System.out.println("------------------");
+            educationDistribution(customHashTable);
+            System.out.println("------------------");
+            incomeDistribution(customHashTable);
+            System.out.println("------------------");
+            maritalDistribution(customHashTable);
+            System.out.println("------------------");
+            smokerDistribution(customHashTable);
+            System.out.println("------------------");
+            lifeQualityGeneral(customHashTable);
+            System.out.println("------------------");
+            lifeQualityGenderBased(customHashTable);
+            System.out.println("------------------");
+            lifeQualityAgeBased(customHashTable);
+            System.out.println("------------------");
+            lifeQualityResidenceBased(customHashTable);
+            System.out.println("------------------");
+            lifeQualityEducationBased(customHashTable);
+            System.out.println("------------------");
+            lifeQualityIncomeBased(customHashTable);
+            System.out.println("------------------");
+            lifeQualityMaritalBased(customHashTable);
+            System.out.println("------------------");
+            lifeQualitySmokerBased(customHashTable);
+            System.out.println("------------------");
+            mostCommonSymptoms(customHashTable);
+            System.out.println("------------------");
+            mostCommonTreatment(customHashTable);
+            System.out.println("------------------");
+            mostCommonLifeAspects(customHashTable);
+            System.out.println("------------------");
+            lifeQualityMixConditionBased(customHashTable);
+            System.out.println("------------------");
+            lifeQualityResponseBased(customHashTable);
+            System.out.println("------------------");
 
 
-
-
-    public static void main(String[] args) {
-        CustomHashTable customHashTable = ReadFile.readResponsesFromFile("responses.txt");
-        genderDistribution(customHashTable);
-        System.out.println("-------------------");
-        ageGroupDistribution(customHashTable);
-        System.out.println("-------------------");
-        lifeQualityResidenceBased(customHashTable);
-        System.out.println("-------------------");
-        educationDistribution(customHashTable);
-        System.out.println("-------------------");
-        incomeDistribution(customHashTable);
-        System.out.println("-------------------");
-        maritalDistribution(customHashTable);
-        System.out.println("-------------------");
-        smokerDistribution(customHashTable);
-        System.out.println("-------------------");
-        lifeQualityGeneral(customHashTable);
-        System.out.println("-------------------");
-        lifeQualityGenderBased(customHashTable);
-        System.out.println("-------------------");
-        lifeQualityAgeBased(customHashTable);
-        System.out.println("-------------------");
-        lifeQualityResidenceBased(customHashTable);
-        System.out.println("-------------------");
-        lifeQualityEducationBased(customHashTable);
-        System.out.println("-------------------");
-        lifeQualityIncomeBased(customHashTable);
-        System.out.println("-------------------");
-        lifeQualityMaritalBased(customHashTable);
-        System.out.println("------------------");
-        lifeQualitySmokerBased(customHashTable);
-        System.out.println("------------------");
         }
 
+    public static void sortByCountDescending(String[] StringArray, int[] counts) {
+        int n = counts.length;
+        int maxIndex = 0;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (counts[j] > counts[maxIndex]) {
+                    maxIndex = j;
+                }
+            }
+            // Swap in counts array
+            int tempCount = counts[i];
+            counts[i] = counts[maxIndex];
+            counts[maxIndex] = tempCount;
+
+            // Swap in symptoms array to stay in sync
+            String tempSymptom = StringArray[i];
+            StringArray[i] = StringArray[maxIndex];
+            StringArray[maxIndex] = tempSymptom;
+        }
+    }
     }
 
 
