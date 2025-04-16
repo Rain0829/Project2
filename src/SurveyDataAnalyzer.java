@@ -5,10 +5,10 @@ public class SurveyDataAnalyzer {
         int countGender2 = 0;
         int countGender3 = 0;
         int countGender4 = 0;
-        for (int i = 0; i < customHashTable.getSize(); i++) {
+        for (int i = 0; i < customHashTable.getSize(); i++) { //iterates thru hash
             Response response = customHashTable.search(i);
             if (response != null) {
-                switch (response.getGender()) {
+                switch (response.getGender()) { //counters to track responses
                     case "F":
                         countGender1++;
                         break;
@@ -24,11 +24,11 @@ public class SurveyDataAnalyzer {
                 }
             }
         }
-        genderDistribution[0] = countGender1;
+        genderDistribution[0] = countGender1; //stores counts in arrays
         genderDistribution[1] = countGender2;
         genderDistribution[2] = countGender3;
         genderDistribution[3] = countGender4;
-        System.out.println(genderDistribution[0]);
+        System.out.println(genderDistribution[0]); //print statements for debugging/testing
         System.out.println(genderDistribution[1]);
         System.out.println(genderDistribution[2]);
         System.out.println(genderDistribution[3]);
@@ -42,7 +42,7 @@ public class SurveyDataAnalyzer {
         int countAge2 = 0;
         int countAge3 = 0;
         int countAge4 = 0;
-        for (int i = 0; i < 900; i++) {
+        for (int i = 0; i < 900; i++) { // fixed size *WHY 900???
             Response response = customHashTable.search(i);
             if (response != null) {
                 switch (response.getAge()) {
@@ -186,7 +186,7 @@ public class SurveyDataAnalyzer {
         for (int i = 0; i < customHashTable.getSize(); i++) {
             Response response = customHashTable.search(i);
             if (response != null) {
-                switch (response.getSmoker()) {
+                switch (response.getSmoker()) { //uses yes/no only
                     case "Yes":
                         countSmoker1++;
                         break;
@@ -204,15 +204,15 @@ public class SurveyDataAnalyzer {
     }
 
 
-    public static double lifeQualityGeneral(CustomHashTable customHashTable) {
+    public static double lifeQualityGeneral(CustomHashTable customHashTable) { //avg life qual
         double lifeQualityGeneral = 0;
         for (int i = 0; i < customHashTable.getSize(); i++) {
             Response response = customHashTable.search(i);
             if (response != null) {
-                lifeQualityGeneral += response.getQuality();
+                lifeQualityGeneral += response.getQuality(); //sums points
             }
         }
-        System.out.println(lifeQualityGeneral/300);
+        System.out.println(lifeQualityGeneral/300); // calc avg
         return lifeQualityGeneral / 300;
     }
 
@@ -247,8 +247,8 @@ public class SurveyDataAnalyzer {
         }
         lifeQualityGeneral[0] = lifeQualityGeneral[0] / countGender1;
         lifeQualityGeneral[1] = lifeQualityGeneral[1] / countGender2;
-        lifeQualityGeneral[2] = lifeQualityGeneral[2] / countGender2;
-        lifeQualityGeneral[3] = lifeQualityGeneral[3] / countGender2;
+        lifeQualityGeneral[2] = lifeQualityGeneral[2] / countGender3;
+        lifeQualityGeneral[3] = lifeQualityGeneral[3] / countGender4;
         System.out.println(lifeQualityGeneral[0]);
         System.out.println(lifeQualityGeneral[1]);
         System.out.println(lifeQualityGeneral[2]);
@@ -492,7 +492,7 @@ public class SurveyDataAnalyzer {
         for (int i = 0; i < customHashTable.getSize(); i++) {
             Response response = customHashTable.search(i);
             if (response != null) {
-                String response9 = response.getQ9();
+                String response9 = response.getQ9(); //string to check keyword
                 if (response9.contains("Surgical")) {
                     countTreatments[0]++;
                 }
@@ -532,7 +532,7 @@ public class SurveyDataAnalyzer {
                 if (response16.contains("Chest pain")) countTreatments[3]++;
                 if (response16.contains("Shortness of breath")) countTreatments[4]++;
                 if (response16.contains("Weakness")) countTreatments[5]++;
-//                if (response16.contains("None of the above")) countTreatments[6]++; //delete this? bc says []6
+//                if (response16.contains("None of the above")) countTreatments[6]++; //*delete this? bc says []6
             }
         }
         sortByCountDescending(mostCommonSymptoms, countTreatments);
@@ -659,7 +659,7 @@ public class SurveyDataAnalyzer {
         System.out.println(avg[3]);
         return avg;
     }
-
+        // calling methods in order, reading from file to hashtable
         public static void main (String[]args){
             CustomHashTable customHashTable = ReadFile.readResponsesFromFile("responses.txt");
             genderDistribution(customHashTable);
@@ -706,6 +706,7 @@ public class SurveyDataAnalyzer {
 
         }
 
+        // helper method to sort arrays by largest to smallest count
     public static void sortByCountDescending(String[] StringArray, int[] counts) {
         int n = counts.length;
         int maxIndex = 0;
