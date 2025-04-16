@@ -1,4 +1,9 @@
 public class SurveyDataAnalyzer {
+    private CustomHashTable customHashTable;
+
+    public SurveyDataAnalyzer(CustomHashTable customHashTable) {
+        this.customHashTable = customHashTable;
+    }
     public static int[] genderDistribution(CustomHashTable customHashTable) {
         int[] genderDistribution = new int[4];
         int countGender1 = 0;
@@ -42,7 +47,7 @@ public class SurveyDataAnalyzer {
         int countAge2 = 0;
         int countAge3 = 0;
         int countAge4 = 0;
-        for (int i = 0; i < 900; i++) {
+        for (int i = 0; i < customHashTable.getSize(); i++) {
             Response response = customHashTable.search(i);
             if (response != null) {
                 switch (response.getAge()) {
@@ -69,6 +74,37 @@ public class SurveyDataAnalyzer {
         System.out.println(ageGroupDistribution[2]);
         System.out.println(ageGroupDistribution[3]);
         return ageGroupDistribution;
+    }
+
+    public static int[] residenceDistribution(CustomHashTable customHashTable) {
+        int[] residenceDistribution = new int[4];
+        int countResidence1 = 0;
+        int countResidence2 = 0;
+        int countResidence3 = 0;
+        int countResidence4 = 0;
+        for (int i = 0; i < customHashTable.getSize(); i++) {
+            Response response = customHashTable.search(i);
+            if (response != null) {
+                switch (response.getResidence()) {
+                    case 1:
+                        countResidence1++;
+                        break;
+                    case 2:
+                        countResidence2++;
+                        break;
+                    case 3:
+                        countResidence3++;
+                        break;
+                    case 4:
+                        countResidence4++;
+                        break;
+                }
+            }
+        }
+        residenceDistribution[0] = countResidence1;
+        residenceDistribution[1] = countResidence2;
+        residenceDistribution[2] = countResidence3;
+        residenceDistribution[3] = countResidence4;
     }
 
     public static int[] educationDistribution(CustomHashTable customHashTable) {
@@ -570,7 +606,7 @@ public class SurveyDataAnalyzer {
         return mostCommonLifeAspects;
     }
 
-    public static double[] lifeQualityMixConditionBased(CustomHashTable customHashTable) {
+    public static double[] lifeQualityMixConditionsBased(CustomHashTable customHashTable) {
 
         double [] avg = new double[2];
         int count = 0;
@@ -698,7 +734,7 @@ public class SurveyDataAnalyzer {
             System.out.println("------------------");
             mostCommonLifeAspects(customHashTable);
             System.out.println("------------------");
-            lifeQualityMixConditionBased(customHashTable);
+            lifeQualityMixConditionsBased(customHashTable);
             System.out.println("------------------");
             lifeQualityResponseBased(customHashTable);
             System.out.println("------------------");
