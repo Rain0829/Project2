@@ -24,6 +24,7 @@ public class SurveyDataAnalyzer {
                 }
             }
         }
+        System.out.println("genderDistribution: ");
         genderDistribution[0] = countGender1; //stores counts in arrays
         genderDistribution[1] = countGender2;
         genderDistribution[2] = countGender3;
@@ -42,7 +43,7 @@ public class SurveyDataAnalyzer {
         int countAge2 = 0;
         int countAge3 = 0;
         int countAge4 = 0;
-        for (int i = 0; i < 900; i++) { // fixed size *WHY 900???
+        for (int i = 0; i < customHashTable.getSize(); i++) {
             Response response = customHashTable.search(i);
             if (response != null) {
                 switch (response.getAge()) {
@@ -60,6 +61,7 @@ public class SurveyDataAnalyzer {
                 }
             }
         }
+        System.out.println("ageGroupDistribution:");
         ageGroupDistribution[0] = countAge1;
         ageGroupDistribution[1] = countAge2;
         ageGroupDistribution[2] = countAge3;
@@ -96,6 +98,7 @@ public class SurveyDataAnalyzer {
                 }
             }
         }
+        System.out.println("educationDistribution:");
         educationDistribution[0] = countEducation1;
         educationDistribution[1] = countEducation2;
         educationDistribution[2] = countEducation3;
@@ -132,6 +135,7 @@ public class SurveyDataAnalyzer {
                 }
             }
         }
+        System.out.println("incomeDistribution:");
         incomeDistribution[0] = countIncome1;
         incomeDistribution[1] = countIncome2;
         incomeDistribution[2] = countIncome3;
@@ -168,6 +172,7 @@ public class SurveyDataAnalyzer {
                 }
             }
         }
+        System.out.println("maritalDistribution:");
         maritalDistribution[0] = countMarital2;
         maritalDistribution[1] = countMarital2;
         maritalDistribution[2] = countMarital3;
@@ -196,6 +201,7 @@ public class SurveyDataAnalyzer {
                 }
             }
         }
+        System.out.println("smokerDistribution:");
         smokerDistribution[0] = countSmoker1;
         smokerDistribution[1] = countSmoker2;
         System.out.println(smokerDistribution[0]);
@@ -520,8 +526,8 @@ public class SurveyDataAnalyzer {
     }
 
     public static String [] mostCommonSymptoms(CustomHashTable customHashTable) { //something wrong
-        String[] mostCommonSymptoms = {"Cough", "Hoarseness", "Coughing up blood", "Chest pain", "Weakness", "None of the above"};
-        int[] countTreatments = new int[6];
+        String[] mostCommonSymptoms = {"Cough", "Hoarseness", "Coughing up blood", "Chest pain", "Shortness of breath", "Weakness", "None of the above"};
+        int[] countTreatments = new int[7];
         for (int i = 0; i < customHashTable.getSize(); i++) {
             Response response = customHashTable.search(i);
             if (response != null) {
@@ -532,7 +538,7 @@ public class SurveyDataAnalyzer {
                 if (response16.contains("Chest pain")) countTreatments[3]++;
                 if (response16.contains("Shortness of breath")) countTreatments[4]++;
                 if (response16.contains("Weakness")) countTreatments[5]++;
-//                if (response16.contains("None of the above")) countTreatments[6]++; //*delete this? bc says []6
+                if (response16.contains("None of the above")) countTreatments[6]++;
             }
         }
         sortByCountDescending(mostCommonSymptoms, countTreatments);
@@ -542,6 +548,7 @@ public class SurveyDataAnalyzer {
         System.out.println(mostCommonSymptoms[3]);
         System.out.println(mostCommonSymptoms[4]);
         System.out.println(mostCommonSymptoms[5]);
+        System.out.println(mostCommonSymptoms[6]);
         return mostCommonSymptoms;
     }
     
