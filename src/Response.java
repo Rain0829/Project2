@@ -32,7 +32,7 @@ public class Response {
     private int Q30;
     private int Quality;
 
-    public Response(int id, String gender, int age, int residence, int education, int maritalStatus, int incomeSource, int smoker, int year, String q9, int q10, int q11, int q12, int q13, int q14, int q15, String q16, int q17, int q18, int q19, int q21, int q22, String q23, int q24, int q20, int q25, int q26, int q27, int q28, int q29, int q30) {
+    public Response(int id, String gender, int age, int residence, int maritalStatus, int education, int incomeSource, int smoker, int year, String q9, int q10, int q11, int q12, int q13, int q14, int q15, String q16, int q17, int q18, int q19, int q21, int q22, String q23, int q24, int q20, int q25, int q26, int q27, int q28, int q29, int q30) {
         Id = id;
         Gender = gender;
         Age = age;
@@ -192,7 +192,7 @@ public class Response {
     }
 
     public int getQuality() {
-        return getQ13() + getQ14() + getQ15() + getQ17() + getQ18() + getQ19() + getQ20() + getQ21() + getQ22() + getQ24() + getQ25() + getQ26() + getQ27() + getQ28() + getQ29() + getQ30();
+        return getQ13() + getQ14() + getQ15() + getQ17() + getQ18() + getQ19() + getQ21() + getQ22() + getQ24() + getQ25() + getQ26() + getQ27() + getQ28() + getQ29() + getQ30();
     }
 
     public void printResponse(){

@@ -20,9 +20,9 @@ public class ReadFile {
             };
             int age = Integer.parseInt(fields[2]);
             int residence = Integer.parseInt(fields[3]);
-            int education = Integer.parseInt(fields[4]);
-            int maritalStatus = Integer.parseInt(fields[5]);
-            int incomeSource = Integer.parseInt(fields[6]);
+            int maritalStatus = Integer.parseInt(fields[4]);
+            int incomeSource = Integer.parseInt(fields[5]);
+            int   education = Integer.parseInt(fields[6]);
             int smoker = Integer.parseInt(fields[7]);
             int year = Integer.parseInt(fields[8]);
             String q9 = fields[9];
