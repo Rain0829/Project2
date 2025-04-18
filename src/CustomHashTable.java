@@ -34,6 +34,7 @@ public class CustomHashTable {
         this.size = 0;
     }
 
+
     private int hash(int key) {
         return (key * 7) % table.length;
     }
@@ -117,7 +118,11 @@ public class CustomHashTable {
     }
 
     public int getSize() {
-        return table.length;
+        return size;
+    }
+
+    public Entry[] getTable() {
+        return table;
     }
 
 }
