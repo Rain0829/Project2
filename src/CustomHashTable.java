@@ -117,7 +117,7 @@ public class CustomHashTable {
         }
     }
 
-    public int getSize() {
+    public int size() {
         return size;
     }
 
