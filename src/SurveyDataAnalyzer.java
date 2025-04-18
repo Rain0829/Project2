@@ -556,18 +556,19 @@ public class SurveyDataAnalyzer {
     }
 
     public static String [] mostCommonSymptoms(CustomHashTable customHashTable) { //something wrong
-        String[] mostCommonSymptoms = {"Cough", "Hoarseness", "Coughingupblood", "Chestpain", "Shortnessofbreath", "Weakness"};
-        int[] countTreatments = new int[6];
+        String[] mostCommonSymptoms = {"Cough", "Hoarseness", "CoughingUpBlood", "ChestPain", "ShortnessOfBreath", "Weakness"};
+        int[] countTreatments = new int[mostCommonSymptoms.length];
         for (CustomHashTable.Entry entry : customHashTable.getTable()) {
             if (entry != null) {
                 Response response = entry.getValue();
                 String response16 = response.getQ16();
                 if (response16.contains("Cough")) countTreatments[0]++;
                 if (response16.contains("Hoarseness")) countTreatments[1]++;
-                if (response16.contains("Coughing up blood")) countTreatments[2]++;
-                if (response16.contains("Chest pain")) countTreatments[3]++;
-                if (response16.contains("Shortness of breath")) countTreatments[4]++;
+                if (response16.contains("CoughingUpBlood")) countTreatments[2]++;
+                if (response16.contains("ChestPain")) countTreatments[3]++;
+                if (response16.contains("ShortnessOfBreath")) countTreatments[4]++;
                 if (response16.contains("Weakness")) countTreatments[5]++;
+               // if (response16.contains("None of the above")) countTreatments[6]++;
             }
         }
         sortByCountDescending(mostCommonSymptoms, countTreatments);
@@ -577,12 +578,13 @@ public class SurveyDataAnalyzer {
         System.out.println(mostCommonSymptoms[3]);
         System.out.println(mostCommonSymptoms[4]);
         System.out.println(mostCommonSymptoms[5]);
+       // System.out.println(mostCommonSymptoms[6]);
         return mostCommonSymptoms;
     }
     
     public static String[] mostCommonLifeAspects(CustomHashTable customHashTable) {
-        String[] mostCommonLifeAspects = {"Physicalaspect", "Psychologicalaspect", "Professionallife", "Familylife", "Sociallife"};
-        int[] countLifeAspects = new int[5];
+        String[] mostCommonLifeAspects = {"PhysicalAspect", "PsychologicalAspect", "ProfessionalLife", "FamilyLife", "SocialLife"};
+        int[] countLifeAspects = new int[mostCommonLifeAspects.length];
         for (CustomHashTable.Entry entry : customHashTable.getTable()) {
             if (entry != null) {
                 Response response = entry.getValue();
@@ -592,6 +594,7 @@ public class SurveyDataAnalyzer {
                 if (response23.contains("Professional life")) countLifeAspects[2]++;
                 if (response23.contains("Family life")) countLifeAspects[3]++;
                 if (response23.contains("Social life")) countLifeAspects[4]++;
+                //if (response23.contains("Does not affect")) countLifeAspects[5]++;
             }
         }
         sortByCountDescending(mostCommonLifeAspects, countLifeAspects);
@@ -600,6 +603,7 @@ public class SurveyDataAnalyzer {
         System.out.println(mostCommonLifeAspects[2]);
         System.out.println(mostCommonLifeAspects[3]);
         System.out.println(mostCommonLifeAspects[4]);
+      //  System.out.println(mostCommonLifeAspects[5]);
         return mostCommonLifeAspects;
     }
 
@@ -697,33 +701,24 @@ public class SurveyDataAnalyzer {
 
         }
 
-    public static void sortByCountDescending(String[] stringArray, int[] counts) {
-        if (stringArray == null || counts == null || stringArray.length != counts.length) {
-            throw new IllegalArgumentException("Arrays must be non-null and of equal length");
-        }
+    public static void sortByCountDescending(String[] StringArray, int[] counts) {
         int n = counts.length;
-
         for (int i = 0; i < n - 1; i++) {
-            // Reset maxIndex to i at the start of each pass
             int maxIndex = i;
             for (int j = i + 1; j < n; j++) {
                 if (counts[j] > counts[maxIndex]) {
                     maxIndex = j;
                 }
             }
+            // Swap in counts array
+            int tempCount = counts[i];
+            counts[i] = counts[maxIndex];
+            counts[maxIndex] = tempCount;
 
-            // Only swap if we found a new max
-            if (maxIndex != i) {
-                // Swap counts
-                int tmpCount = counts[i];
-                counts[i] = counts[maxIndex];
-                counts[maxIndex] = tmpCount;
-
-                // Swap strings in parallel
-                String tmpStr = stringArray[i];
-                stringArray[i] = stringArray[maxIndex];
-                stringArray[maxIndex] = tmpStr;
-            }
+            // Swap in symptoms array to stay in sync
+            String tempSymptom = StringArray[i];
+            StringArray[i] = StringArray[maxIndex];
+            StringArray[maxIndex] = tempSymptom;
         }
     }
     }
