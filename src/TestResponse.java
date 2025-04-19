@@ -113,7 +113,7 @@ public class TestResponse {
 
         System.out.println("Testing method 16:");
         String[] test16 = SurveyDataAnalyzer.mostCommonTreatment(responses); // Call the method to get the test results
-        String[] result16 = new String[]{"Chemotherapy", "Surgical","Radiotherapy", "Immunotherapy", "Molecularlytargetedtherapy"};
+        String[] result16 = new String[]{"Chemotherapy", "Surgical","Radiotherapy", "Immunotherapy", "MolecularlyTargetedTherapy"};
         boolean isEqual16 = Arrays.equals(test16, result16);
         System.out.println("Test result matches expected result: " + isEqual16);
 

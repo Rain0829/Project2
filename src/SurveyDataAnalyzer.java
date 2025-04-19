@@ -254,8 +254,8 @@ public class SurveyDataAnalyzer {
         return lifeQualityGeneral;
     }
 
-    public static double [] lifeQualityGenderBased(CustomHashTable customHashTable) {
-        double [] lifeQualityGeneral = new double[4];
+    public static double[] lifeQualityGenderBased(CustomHashTable customHashTable) {
+        double[] lifeQualityGeneral = new double[4];
         int countGender1 = 0;
         int countGender2 = 0;
         int countGender3 = 0;
@@ -296,7 +296,7 @@ public class SurveyDataAnalyzer {
     }
 
     public static double[] lifeQualityAgeBased(CustomHashTable customHashTable) {
-        double [] lifeAgeBased = new double[4];
+        double[] lifeAgeBased = new double[4];
         int countAge1 = 0;
         int countAge2 = 0;
         int countAge3 = 0;
@@ -310,17 +310,17 @@ public class SurveyDataAnalyzer {
                         countAge1++;
                         break;
                     case 2:
-                          lifeAgeBased[1] += response.getQuality();
-                          countAge2++;
-                          break;
+                        lifeAgeBased[1] += response.getQuality();
+                        countAge2++;
+                        break;
                     case 3:
                         lifeAgeBased[2] += response.getQuality();
                         countAge3++;
                         break;
-                     case 4:
-                         lifeAgeBased[3] += response.getQuality();
-                         countAge4++;
-                         break;
+                    case 4:
+                        lifeAgeBased[3] += response.getQuality();
+                        countAge4++;
+                        break;
                 }
             }
         }
@@ -336,7 +336,7 @@ public class SurveyDataAnalyzer {
     }
 
     public static double[] lifeQualityResidenceBased(CustomHashTable customHashTable) {
-        double [] lifeResidenceBased = new double[4];
+        double[] lifeResidenceBased = new double[4];
         int countResidence1 = 0;
         int countResidence2 = 0;
         int countResidence3 = 0;
@@ -353,14 +353,14 @@ public class SurveyDataAnalyzer {
                         lifeResidenceBased[1] += response.getQuality();
                         countResidence2++;
                         break;
-                     case 3:
-                         lifeResidenceBased[2] += response.getQuality();
-                         countResidence3++;
-                         break;
-                     case 4:
-                         lifeResidenceBased[3] += response.getQuality();
-                         countResidence4++;
-                         break;
+                    case 3:
+                        lifeResidenceBased[2] += response.getQuality();
+                        countResidence3++;
+                        break;
+                    case 4:
+                        lifeResidenceBased[3] += response.getQuality();
+                        countResidence4++;
+                        break;
                 }
             }
         }
@@ -375,7 +375,7 @@ public class SurveyDataAnalyzer {
         return lifeResidenceBased;
     }
 
-    public static double[] lifeQualityEducationBased(CustomHashTable customHashTable){
+    public static double[] lifeQualityEducationBased(CustomHashTable customHashTable) {
         double[] lifeEducationBased = new double[4];
         int countEducation1 = 0;
         int countEducation2 = 0;
@@ -415,7 +415,7 @@ public class SurveyDataAnalyzer {
         return lifeEducationBased;
     }
 
-    public static double[] lifeQualityIncomeBased(CustomHashTable customHashTable){
+    public static double[] lifeQualityIncomeBased(CustomHashTable customHashTable) {
         double[] lifeIncomeBased = new double[4];
         int countIncome1 = 0;
         int countIncome2 = 0;
@@ -455,7 +455,7 @@ public class SurveyDataAnalyzer {
         return lifeIncomeBased;
     }
 
-    public static double[] lifeQualityMaritalBased(CustomHashTable customHashTable){
+    public static double[] lifeQualityMaritalBased(CustomHashTable customHashTable) {
         double[] lifeMaritalBased = new double[4];
         int countMarital1 = 0;
         int countMarital2 = 0;
@@ -496,7 +496,7 @@ public class SurveyDataAnalyzer {
     }
 
 
-    public static double[] lifeQualitySmokerBased(CustomHashTable customHashTable){
+    public static double[] lifeQualitySmokerBased(CustomHashTable customHashTable) {
         double[] lifeSmokerBased = new double[2];
         int countSmoker1 = 0;
         int countSmoker2 = 0;
@@ -557,32 +557,52 @@ public class SurveyDataAnalyzer {
         return mostCommonTreatments;
     }
 
-    public static String [] mostCommonSymptoms(CustomHashTable customHashTable) { //something wrong
+    public static String[] mostCommonSymptoms(CustomHashTable customHashTable) { //something wrong
         String[] mostCommonSymptoms = {"Cough", "Hoarseness", "CoughingUpBlood", "ChestPain", "ShortnessOfBreath", "Weakness"};
-        int[] countTreatments = new int[6];
+        int[] countSymptoms = new int[6];
         for (CustomHashTable.Entry entry : customHashTable.getTable()) {
             if (entry != null) {
                 Response response = entry.getValue();
                 String response16 = response.getQ16();
-                if (response16.contains("Cough")) countTreatments[0]++;
-                if (response16.contains("Hoarseness")) countTreatments[1]++;
-                if (response16.contains("CoughingUpBlood")) countTreatments[2]++;
-                if (response16.contains("ChestPain")) countTreatments[3]++;
-                if (response16.contains("ShortnessOfBreath")) countTreatments[4]++;
-                if (response16.contains("Weakness")) countTreatments[5]++;
+
+                String[] reportedSymptoms = response16.split(";"); // splits when ;
+                for (String symptom : reportedSymptoms) {
+                    symptom = symptom.trim(); // removes extra spaces
+                    switch (symptom) {
+                        case "Cough":
+                            countSymptoms[0]++;
+                            break;
+                        case "Hoarseness":
+                            countSymptoms[1]++;
+                            break;
+                        case "CoughingUpBlood":
+                            countSymptoms[2]++;
+                            break;
+                        case "ChestPain":
+                            countSymptoms[3]++;
+                            break;
+                        case "ShortnessOfBreath":
+                            countSymptoms[4]++;
+                            break;
+                        case "Weakness":
+                            countSymptoms[5]++;
+                            break;
+                    }
+                }
             }
         }
-        System.out.println(Arrays.toString(countTreatments));
-        sortByCountDescending(mostCommonSymptoms, countTreatments);
-        System.out.println(mostCommonSymptoms[0]);
-        System.out.println(mostCommonSymptoms[1]);
-        System.out.println(mostCommonSymptoms[2]);
-        System.out.println(mostCommonSymptoms[3]);
-        System.out.println(mostCommonSymptoms[4]);
-        System.out.println(mostCommonSymptoms[5]);
+
+        sortByCountDescending(mostCommonSymptoms, countSymptoms);
+       System.out.println(Arrays.toString(countSymptoms));
+       System.out.println(mostCommonSymptoms[0]);
+       System.out.println(mostCommonSymptoms[1]);
+       System.out.println(mostCommonSymptoms[2]);
+       System.out.println(mostCommonSymptoms[3]);
+       System.out.println(mostCommonSymptoms[4]);
+       System.out.println(mostCommonSymptoms[5]);
         return mostCommonSymptoms;
     }
-    
+
     public static String[] mostCommonLifeAspects(CustomHashTable customHashTable) {
         String[] mostCommonLifeAspects = {"PhysicalAspect", "PsychologicalAspect", "ProfessionalLife", "FamilyLife", "SocialLife"};
         int[] countLifeAspects = new int[5];
@@ -608,7 +628,7 @@ public class SurveyDataAnalyzer {
 
     public static double[] lifeQualityMixConditionsBased(CustomHashTable customHashTable) {
 
-        double [] avg = new double[2];
+        double[] avg = new double[2];
         int count = 0;
         double quality = 0;
 
@@ -649,7 +669,7 @@ public class SurveyDataAnalyzer {
     }
 
     public static double[] lifeQualityResponseBased(CustomHashTable customHashTable) {
-        double [] avg = new double[4];
+        double[] avg = new double[4];
         int countVeryGood = 0;
         int countGood = 0;
         int countBad = 0;
@@ -663,19 +683,19 @@ public class SurveyDataAnalyzer {
             if (entry != null) {
                 Response response = entry.getValue();
                 int Q15 = response.getQ15();
-                if (Q15 == 1){
+                if (Q15 == 1) {
                     countVeryGood++;
                     qualityVeryGood += response.getQuality();
                 }
-                if (Q15 == 2){
+                if (Q15 == 2) {
                     countGood++;
                     qualityGood += response.getQuality();
                 }
-                if (Q15 == 3){
+                if (Q15 == 3) {
                     countBad++;
                     qualityBad += response.getQuality();
                 }
-                if (Q15 == 4){
+                if (Q15 == 4) {
                     countVeryBad++;
                     qualityVeryBad += response.getQuality();
                 }
@@ -696,9 +716,9 @@ public class SurveyDataAnalyzer {
         return avg;
     }
 
-        public static void main (String[]args){
+    public static void main(String[] args) {
 
-        }
+    }
 
     public static void sortByCountDescending(String[] stringArray, int[] counts) {
         if (stringArray == null || counts == null || stringArray.length != counts.length) {
@@ -727,6 +747,6 @@ public class SurveyDataAnalyzer {
             }
         }
     }
-    }
+}
 
 
