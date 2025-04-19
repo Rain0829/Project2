@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class SurveyDataAnalyzer {
 
     public static int[] genderDistribution(CustomHashTable customHashTable) {
@@ -521,7 +523,7 @@ public class SurveyDataAnalyzer {
     }
 
     public static String[] mostCommonTreatment(CustomHashTable customHashTable) {
-        String[] mostCommonTreatments = {"Surgical", "Chemotherapy", "Radiotherapy", "Immunotherapy", "Molecularlytargetedtherapy"};
+        String[] mostCommonTreatments = {"Surgical", "Chemotherapy", "Radiotherapy", "Immunotherapy", "MolecularlyTargetedTherapy"};
 
         int[] countTreatments = new int[5];
 
@@ -541,7 +543,7 @@ public class SurveyDataAnalyzer {
                 if (response9.contains("Immunotherapy")) {
                     countTreatments[3]++;
                 }
-                if (response9.contains("Molecularlytargetedtherapy")) {
+                if (response9.contains("MolecularlyTargetedTherapy")) {
                     countTreatments[4]++;
                 }
             }
@@ -557,7 +559,7 @@ public class SurveyDataAnalyzer {
 
     public static String [] mostCommonSymptoms(CustomHashTable customHashTable) { //something wrong
         String[] mostCommonSymptoms = {"Cough", "Hoarseness", "CoughingUpBlood", "ChestPain", "ShortnessOfBreath", "Weakness"};
-        int[] countTreatments = new int[mostCommonSymptoms.length];
+        int[] countTreatments = new int[6];
         for (CustomHashTable.Entry entry : customHashTable.getTable()) {
             if (entry != null) {
                 Response response = entry.getValue();
@@ -568,9 +570,9 @@ public class SurveyDataAnalyzer {
                 if (response16.contains("ChestPain")) countTreatments[3]++;
                 if (response16.contains("ShortnessOfBreath")) countTreatments[4]++;
                 if (response16.contains("Weakness")) countTreatments[5]++;
-               // if (response16.contains("None of the above")) countTreatments[6]++;
             }
         }
+        System.out.println(Arrays.toString(countTreatments));
         sortByCountDescending(mostCommonSymptoms, countTreatments);
         System.out.println(mostCommonSymptoms[0]);
         System.out.println(mostCommonSymptoms[1]);
@@ -578,23 +580,21 @@ public class SurveyDataAnalyzer {
         System.out.println(mostCommonSymptoms[3]);
         System.out.println(mostCommonSymptoms[4]);
         System.out.println(mostCommonSymptoms[5]);
-       // System.out.println(mostCommonSymptoms[6]);
         return mostCommonSymptoms;
     }
     
     public static String[] mostCommonLifeAspects(CustomHashTable customHashTable) {
         String[] mostCommonLifeAspects = {"PhysicalAspect", "PsychologicalAspect", "ProfessionalLife", "FamilyLife", "SocialLife"};
-        int[] countLifeAspects = new int[mostCommonLifeAspects.length];
+        int[] countLifeAspects = new int[5];
         for (CustomHashTable.Entry entry : customHashTable.getTable()) {
             if (entry != null) {
                 Response response = entry.getValue();
                 String response23 = response.getQ23();
-                if (response23.contains("Physical aspect")) countLifeAspects[0]++;
-                if (response23.contains("Psychological aspect")) countLifeAspects[1]++;
-                if (response23.contains("Professional life")) countLifeAspects[2]++;
-                if (response23.contains("Family life")) countLifeAspects[3]++;
-                if (response23.contains("Social life")) countLifeAspects[4]++;
-                //if (response23.contains("Does not affect")) countLifeAspects[5]++;
+                if (response23.contains("PhysicalAspect")) countLifeAspects[0]++;
+                if (response23.contains("PsychologicalAspect")) countLifeAspects[1]++;
+                if (response23.contains("ProfessionalLife")) countLifeAspects[2]++;
+                if (response23.contains("FamilyLife")) countLifeAspects[3]++;
+                if (response23.contains("SocialLife")) countLifeAspects[4]++;
             }
         }
         sortByCountDescending(mostCommonLifeAspects, countLifeAspects);
@@ -603,7 +603,6 @@ public class SurveyDataAnalyzer {
         System.out.println(mostCommonLifeAspects[2]);
         System.out.println(mostCommonLifeAspects[3]);
         System.out.println(mostCommonLifeAspects[4]);
-      //  System.out.println(mostCommonLifeAspects[5]);
         return mostCommonLifeAspects;
     }
 
@@ -701,24 +700,31 @@ public class SurveyDataAnalyzer {
 
         }
 
-    public static void sortByCountDescending(String[] StringArray, int[] counts) {
+    public static void sortByCountDescending(String[] stringArray, int[] counts) {
+        if (stringArray == null || counts == null || stringArray.length != counts.length) {
+            throw new IllegalArgumentException("Arrays must be non-null and of equal length");
+        }
         int n = counts.length;
+
         for (int i = 0; i < n - 1; i++) {
+            // Reset maxIndex to i at the start of each pass
             int maxIndex = i;
             for (int j = i + 1; j < n; j++) {
                 if (counts[j] > counts[maxIndex]) {
                     maxIndex = j;
                 }
             }
-            // Swap in counts array
-            int tempCount = counts[i];
-            counts[i] = counts[maxIndex];
-            counts[maxIndex] = tempCount;
 
-            // Swap in symptoms array to stay in sync
-            String tempSymptom = StringArray[i];
-            StringArray[i] = StringArray[maxIndex];
-            StringArray[maxIndex] = tempSymptom;
+            if (maxIndex != i) {
+                int tmpCount = counts[i];
+                counts[i] = counts[maxIndex];
+                counts[maxIndex] = tmpCount;
+
+                // Swap strings in parallel
+                String tmpStr = stringArray[i];
+                stringArray[i] = stringArray[maxIndex];
+                stringArray[maxIndex] = tmpStr;
+            }
         }
     }
     }
