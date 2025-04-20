@@ -557,7 +557,7 @@ public class SurveyDataAnalyzer {
         return mostCommonTreatments;
     }
 
-    public static String[] mostCommonSymptoms(CustomHashTable customHashTable) { //something wrong
+    public static String[] mostCommonSymptoms(CustomHashTable customHashTable) {
         String[] mostCommonSymptoms = {"Cough", "Hoarseness", "CoughingUpBlood", "ChestPain", "ShortnessOfBreath", "Weakness"};
         int[] countSymptoms = new int[6];
         for (CustomHashTable.Entry entry : customHashTable.getTable()) {
