@@ -9,7 +9,8 @@ lifeQualitySmokerBased, mostCommonTreatment, mostCommonSymptoms, mostCommonLifeA
 lifeQualityMixConditionsBased, lifeQualityResponseBased, sortByCountDescending (helper method)
 Write a new method in the CustomHashTable class called rehash, which is because there is not enough default capacity, we need to extend that. Rehashing is create a new customHashTable and rehash everything.
 Update the insert method in the CustomHashTable. Will rehash when reach the half of maximum capacity.
-
+In the ReadFile class, we put all lines of text file into a list, and put each line into a response. It will split each answer by the space.
+Only constructor and getter in the Response class.
 
 Work division: both members split the work roughly evenly, mostly meeting up and co-working on the program
 at the same time, utilizing Intellij's Code With Me feature. We both sought out TAs during Lab for clarifications/.
