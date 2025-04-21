@@ -7,9 +7,9 @@ smokerDistribution, lifeQualityGeneral, lifeQualityGenderBased, lifeQualityAgeBa
 lifeQualityResidenceBased, lifeQualityEducationBased, lifeQualityIncomeBased, lifeQualityMaritalBased,
 lifeQualitySmokerBased, mostCommonTreatment, mostCommonSymptoms, mostCommonLifeAspects,
 lifeQualityMixConditionsBased, lifeQualityResponseBased, sortByCountDescending (helper method)
+Write a new method in the CustomHashTable class called rehash, which is because there is not enough default capacity, we need to extend that. Rehashing is create a new customHashTable and rehash everything.
+Update the insert method in the CustomHashTable. Will rehash when reach the half of maximum capacity.
 
-RAIN - pls add other implemented methods/features you think we should here, i asked someone in our class and hers
-looks kinda like this one ^ so we should be fine
 
 Work division: both members split the work roughly evenly, mostly meeting up and co-working on the program
 at the same time, utilizing Intellij's Code With Me feature. We both sought out TAs during Lab for clarifications/.
