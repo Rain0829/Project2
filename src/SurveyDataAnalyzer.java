@@ -31,10 +31,6 @@ public class SurveyDataAnalyzer {
         genderDistribution[1] = countGender2;
         genderDistribution[2] = countGender3;
         genderDistribution[3] = countGender4;
-        System.out.println(genderDistribution[0]);
-        System.out.println(genderDistribution[1]);
-        System.out.println(genderDistribution[2]);
-        System.out.println(genderDistribution[3]);
 
         return genderDistribution;
     }
@@ -67,10 +63,6 @@ public class SurveyDataAnalyzer {
         ageGroupDistribution[1] = countAge2;
         ageGroupDistribution[2] = countAge3;
         ageGroupDistribution[3] = countAge4;
-        System.out.println(ageGroupDistribution[0]);
-        System.out.println(ageGroupDistribution[1]);
-        System.out.println(ageGroupDistribution[2]);
-        System.out.println(ageGroupDistribution[3]);
         return ageGroupDistribution;
     }
 
@@ -135,10 +127,6 @@ public class SurveyDataAnalyzer {
         educationDistribution[1] = countEducation2;
         educationDistribution[2] = countEducation3;
         educationDistribution[3] = countEducation4;
-        System.out.println(educationDistribution[0]);
-        System.out.println(educationDistribution[1]);
-        System.out.println(educationDistribution[2]);
-        System.out.println(educationDistribution[3]);
         return educationDistribution;
     }
 
@@ -171,10 +159,6 @@ public class SurveyDataAnalyzer {
         incomeDistribution[1] = countIncome2;
         incomeDistribution[2] = countIncome3;
         incomeDistribution[3] = countIncome4;
-        System.out.println(incomeDistribution[0]);
-        System.out.println(incomeDistribution[1]);
-        System.out.println(incomeDistribution[2]);
-        System.out.println(incomeDistribution[3]);
         return incomeDistribution;
     }
 
@@ -207,10 +191,6 @@ public class SurveyDataAnalyzer {
         maritalDistribution[1] = countMarital2;
         maritalDistribution[2] = countMarital3;
         maritalDistribution[3] = countMarital4;
-        System.out.println(maritalDistribution[0]);
-        System.out.println(maritalDistribution[1]);
-        System.out.println(maritalDistribution[2]);
-        System.out.println(maritalDistribution[3]);
         return maritalDistribution;
     }
 
@@ -233,8 +213,6 @@ public class SurveyDataAnalyzer {
         }
         smokerDistribution[0] = countSmoker1;
         smokerDistribution[1] = countSmoker2;
-        System.out.println(smokerDistribution[0]);
-        System.out.println(smokerDistribution[1]);
         return smokerDistribution;
     }
 
@@ -250,7 +228,6 @@ public class SurveyDataAnalyzer {
             }
         }
         lifeQualityGeneral = lifeQualityGeneral / count;
-        System.out.println(lifeQualityGeneral);
         return lifeQualityGeneral;
     }
 
@@ -287,11 +264,6 @@ public class SurveyDataAnalyzer {
         lifeQualityGeneral[1] = lifeQualityGeneral[1] / countGender2;
         lifeQualityGeneral[2] = lifeQualityGeneral[2] / countGender3;
         lifeQualityGeneral[3] = lifeQualityGeneral[3] / countGender4;
-        System.out.println(lifeQualityGeneral[0]);
-        System.out.println(lifeQualityGeneral[1]);
-        System.out.println(lifeQualityGeneral[2]);
-        System.out.println(lifeQualityGeneral[3]);
-
         return lifeQualityGeneral;
     }
 
@@ -328,10 +300,6 @@ public class SurveyDataAnalyzer {
         lifeAgeBased[1] = lifeAgeBased[1] / countAge2;
         lifeAgeBased[2] = lifeAgeBased[2] / countAge3;
         lifeAgeBased[3] = lifeAgeBased[3] / countAge4;
-        System.out.println(lifeAgeBased[0]);
-        System.out.println(lifeAgeBased[1]);
-        System.out.println(lifeAgeBased[2]);
-        System.out.println(lifeAgeBased[3]);
         return lifeAgeBased;
     }
 
@@ -368,10 +336,6 @@ public class SurveyDataAnalyzer {
         lifeResidenceBased[1] = lifeResidenceBased[1] / countResidence2;
         lifeResidenceBased[2] = lifeResidenceBased[2] / countResidence3;
         lifeResidenceBased[3] = lifeResidenceBased[3] / countResidence4;
-        System.out.println(lifeResidenceBased[0]);
-        System.out.println(lifeResidenceBased[1]);
-        System.out.println(lifeResidenceBased[2]);
-        System.out.println(lifeResidenceBased[3]);
         return lifeResidenceBased;
     }
 
@@ -408,10 +372,6 @@ public class SurveyDataAnalyzer {
         lifeEducationBased[1] = lifeEducationBased[1] / countEducation2;
         lifeEducationBased[2] = lifeEducationBased[2] / countEducation3;
         lifeEducationBased[3] = lifeEducationBased[3] / countEducation4;
-        System.out.println(lifeEducationBased[0]);
-        System.out.println(lifeEducationBased[1]);
-        System.out.println(lifeEducationBased[2]);
-        System.out.println(lifeEducationBased[3]);
         return lifeEducationBased;
     }
 
@@ -448,10 +408,6 @@ public class SurveyDataAnalyzer {
         lifeIncomeBased[1] = lifeIncomeBased[1] / countIncome2;
         lifeIncomeBased[2] = lifeIncomeBased[2] / countIncome3;
         lifeIncomeBased[3] = lifeIncomeBased[3] / countIncome4;
-        System.out.println(lifeIncomeBased[0]);
-        System.out.println(lifeIncomeBased[1]);
-        System.out.println(lifeIncomeBased[2]);
-        System.out.println(lifeIncomeBased[3]);
         return lifeIncomeBased;
     }
 
@@ -488,10 +444,6 @@ public class SurveyDataAnalyzer {
         lifeMaritalBased[1] = lifeMaritalBased[1] / countMarital2;
         lifeMaritalBased[2] = lifeMaritalBased[2] / countMarital3;
         lifeMaritalBased[3] = lifeMaritalBased[3] / countMarital4;
-        System.out.println(lifeMaritalBased[0]);
-        System.out.println(lifeMaritalBased[1]);
-        System.out.println(lifeMaritalBased[2]);
-        System.out.println(lifeMaritalBased[3]);
         return lifeMaritalBased;
     }
 
@@ -517,8 +469,6 @@ public class SurveyDataAnalyzer {
         }
         lifeSmokerBased[0] = lifeSmokerBased[0] / countSmoker1;
         lifeSmokerBased[1] = lifeSmokerBased[1] / countSmoker2;
-        System.out.println(lifeSmokerBased[0]);
-        System.out.println(lifeSmokerBased[1]);
         return lifeSmokerBased;
     }
 
@@ -549,11 +499,6 @@ public class SurveyDataAnalyzer {
             }
         }
         sortByCountDescending(mostCommonTreatments, countTreatments);
-        System.out.println(mostCommonTreatments[0]);
-        System.out.println(mostCommonTreatments[1]);
-        System.out.println(mostCommonTreatments[2]);
-        System.out.println(mostCommonTreatments[3]);
-        System.out.println(mostCommonTreatments[4]);
         return mostCommonTreatments;
     }
 
@@ -593,13 +538,6 @@ public class SurveyDataAnalyzer {
         }
 
         sortByCountDescending(mostCommonSymptoms, countSymptoms);
-       System.out.println(Arrays.toString(countSymptoms));
-       System.out.println(mostCommonSymptoms[0]);
-       System.out.println(mostCommonSymptoms[1]);
-       System.out.println(mostCommonSymptoms[2]);
-       System.out.println(mostCommonSymptoms[3]);
-       System.out.println(mostCommonSymptoms[4]);
-       System.out.println(mostCommonSymptoms[5]);
         return mostCommonSymptoms;
     }
 
@@ -618,11 +556,6 @@ public class SurveyDataAnalyzer {
             }
         }
         sortByCountDescending(mostCommonLifeAspects, countLifeAspects);
-        System.out.println(mostCommonLifeAspects[0]);
-        System.out.println(mostCommonLifeAspects[1]);
-        System.out.println(mostCommonLifeAspects[2]);
-        System.out.println(mostCommonLifeAspects[3]);
-        System.out.println(mostCommonLifeAspects[4]);
         return mostCommonLifeAspects;
     }
 
@@ -662,9 +595,6 @@ public class SurveyDataAnalyzer {
         }
         quality = quality / count;
         avg[1] = quality;
-        System.out.println(avg[0]);
-        System.out.println(avg[1]);
-
         return avg;
     }
 
@@ -709,14 +639,54 @@ public class SurveyDataAnalyzer {
         avg[1] = qualityGood;
         avg[2] = qualityBad;
         avg[3] = qualityVeryBad;
-        System.out.println(avg[0]);
-        System.out.println(avg[1]);
-        System.out.println(avg[2]);
-        System.out.println(avg[3]);
         return avg;
     }
 
     public static void main(String[] args) {
+        CustomHashTable customHashTable = ReadFile.readResponsesFromFile("responses.txt");
+        int[] genderDistribution = genderDistribution(customHashTable);
+        int[] ageGroupDistribution = ageGroupDistribution(customHashTable);
+        int[] residenceDistribution = residenceDistribution(customHashTable);
+        int[] educationDistribution = educationDistribution(customHashTable);
+        int[] incomeDistribution = incomeDistribution(customHashTable);
+        int[] maritalDistribution = maritalDistribution(customHashTable);
+        int[] smokerDistribution = smokerDistribution(customHashTable);
+        double[] lifeQualityGeneral = lifeQualityResponseBased(customHashTable);
+        double[] lifeQualityGenderBased = lifeQualityGenderBased(customHashTable);
+        double[] lifeQualityAgeBased = lifeQualityAgeBased(customHashTable);
+        double[] lifeQualityResidenceBased = lifeQualityResidenceBased(customHashTable);
+        double[] lifeQualityEducationBased = lifeQualityEducationBased(customHashTable);
+        double[] lifeQualityIncomeBased = lifeQualityIncomeBased(customHashTable);
+        double[] lifeQualityMaritalBased = lifeQualityMaritalBased(customHashTable);
+        double[] lifeQualitySmokerBased = lifeQualitySmokerBased(customHashTable);
+        String[] mostCommonTreatment = mostCommonTreatment(customHashTable);
+        String[] mostCommonSymptoms = mostCommonSymptoms(customHashTable);
+        String[] mostCommonLifeAspects = mostCommonLifeAspects(customHashTable);
+        double[] lifeQualityMixConditionsBased = lifeQualityMixConditionsBased(customHashTable);
+        double[] lifeQualityResponseBased = lifeQualityResponseBased(customHashTable);
+        System.out.println("Gender Distribution result" + Arrays.toString(genderDistribution));
+        System.out.println("AgeGroup Distribution result" + Arrays.toString(ageGroupDistribution));
+        System.out.println("Residence Distribution result" + Arrays.toString(residenceDistribution));
+        System.out.println("Education Distribution result" + Arrays.toString(educationDistribution));
+        System.out.println("Income Distribution result" + Arrays.toString(incomeDistribution));
+        System.out.println("Marital Distribution result" + Arrays.toString(maritalDistribution));
+        System.out.println("Smoker Distribution result" + Arrays.toString(smokerDistribution));
+        System.out.println("Life Quality General: " + Arrays.toString(lifeQualityGeneral));
+        System.out.println("Life Quality Gender Based: " + Arrays.toString(lifeQualityGenderBased));
+        System.out.println("Life Quality AgeBased: " + Arrays.toString(lifeQualityAgeBased));
+        System.out.println("Life Quality Residence Based: " + Arrays.toString(lifeQualityResidenceBased));
+        System.out.println("life Quality Education Based: " + Arrays.toString(lifeQualityEducationBased));
+        System.out.println("Life Quality Income Based: " + Arrays.toString(lifeQualityIncomeBased));
+        System.out.println("Life Quality Marital Based: " + Arrays.toString(lifeQualityMaritalBased));
+        System.out.println("Life Quality Smoker Based: " + Arrays.toString(lifeQualitySmokerBased));
+        System.out.println("Most Common Treatment: " + Arrays.toString(mostCommonTreatment));
+        System.out.println("Most Common Symptoms: " + Arrays.toString(mostCommonSymptoms));
+        System.out.println("Most Common Life: " + Arrays.toString(mostCommonLifeAspects));
+        System.out.println("Life Quality Mix Conditions: " + Arrays.toString(lifeQualityMixConditionsBased));
+        System.out.println("Life Quality Response: " + Arrays.toString(lifeQualityResponseBased));
+
+
+
 
     }
 
